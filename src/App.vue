@@ -58,13 +58,13 @@ export default defineComponent({
       selectedFolder.value = findFolderById(mockFolders, id);
     };
 
-    const findFolderById = (folders: any[], id: number) => {
+    const findFolderById = (folders: any[], id: number): { id: number; name: string; children: any[] } | null => {
       for (const folder of folders) {
         if (folder.id === id) {
           return folder;
         }
         if (folder.children) {
-          const found = findFolderById(folder.children, id);
+          const found: { id: number; name: string; children: any[] } | null = findFolderById(folder.children, id);
           if (found) return found;
         }
       }
